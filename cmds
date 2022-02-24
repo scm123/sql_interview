@@ -1,0 +1,47 @@
+create trigger
+before insert 
+  on table_name
+for each row
+
+
+BEGIN
+
+   -- variable declarations
+
+   -- trigger code
+
+END;
+
+
+Both the statements will remove the data from the "customers" table but the main difference is that you can roll back the DELETE statement whereas you can't roll back the TRUNCATE TABLE statement.
+
+
+    CREATE TABLE new_table  
+    AS (SELECT * FROM old_table);   
+
+        CREATE TABLE newcustomers  
+    AS (SELECT *   FROM customers  WHERE customer_id < 5000);  
+
+
+        ALTER TABLE customers  
+      ADD customer_age varchar2(50);  
+
+      ALTER TABLE customers  
+  ADD (customer_type varchar2(50),  
+       customer_address varchar2(50)); 
+
+           ALTER TABLE customers  
+      MODIFY customer_name varchar2(100) not null;  
+
+      ALTER TABLE customers  
+  DROP COLUMN customer_name;  
+
+    ALTER TABLE customers  
+     RENAME COLUMN customer_name to cname;  
+
+         ALTER TABLE customers  
+    RENAME TO retailers;  
+
+    the main difference is that the temporary tables can't have foreign keys related to other tables.
+
+    In Oracle, local temporary tables are distinct within modules. These tables are defined and scoped to the session in which you created it. 
