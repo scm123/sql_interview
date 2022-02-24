@@ -32,6 +32,56 @@ Both the statements will remove the data from the "customers" table but the main
 
            ALTER TABLE customers  
       MODIFY customer_name varchar2(100) not null;  
+      
+      
+          INSERT ALL  
+      INTO suppliers (supplier_id, supplier_name) VALUES (20, 'Google')  
+      INTO suppliers (supplier_id, supplier_name) VALUES (21, 'Microsoft')  
+      INTO suppliers (supplier_id, supplier_name) VALUES (22, 'Apple')  
+    SELECT * FROM dual;  
+    
+    
+        SELECT suppliers.supplier_id, suppliers.supplier_name, order1.order_number  
+    FROM suppliers   
+    INNER JOIN order1  
+    ON suppliers.supplier_id = order1.supplier_id;  
+    
+    
+    TableA                           TableB
++------------+----------+        +--------------------+    
+|Column1     | Column2  |        |Column1  |  Column3 |
++-----------------------+        +--------------------+
+| 1          |  2       |        | 1       |   3      |
++------------+----------+        +---------+----------+
+
+The INNER JOIN of TableA and TableB on Column1 will return
+
+SELECT * FROM TableA AS a INNER JOIN TableB AS b USING (Column1);
+SELECT * FROM TableA AS a INNER JOIN TableB AS b ON a.Column1 = b.Column1;
+
++------------+-----------+---------------------+    
+| a.Column1  | a.Column2 | b.Column1| b.Column3|
++------------------------+---------------------+
+| 1          |  2        | 1        |   3      |
++------------+-----------+----------+----------+
+
+The NATURAL JOIN of TableA and TableB on Column1 will return:
+
+SELECT * FROM TableA NATURAL JOIN TableB
++------------+----------+----------+    
+|Column1     | Column2  | Column3  |
++-----------------------+----------+
+| 1          |  2       |   3      |
++------------+----------+----------+
+
+The repeated column is avoided.
+
+
+Equi Join
+
+Equi join is a special type of join in which we use only an equality operator.
+Hence, when you make a query for join using equality operator then that join query comes under Equi join.
+
 
       ALTER TABLE customers  
   DROP COLUMN customer_name;  
@@ -45,3 +95,13 @@ Both the statements will remove the data from the "customers" table but the main
     the main difference is that the temporary tables can't have foreign keys related to other tables.
 
     In Oracle, local temporary tables are distinct within modules. These tables are defined and scoped to the session in which you created it. 
+    
+    
+    Natural Join
+
+A natural join is a type of equi join which occurs implicitly by comparing all the same names columns in both tables. The join result has only one column for each pair of equally named columns.
+Natural Join Example
+
+--Run in Oracle and MySQL 
+SELECT * FROM tblEmp NATURAL JOIN tblDept
+
