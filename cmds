@@ -105,3 +105,6 @@ Natural Join Example
 --Run in Oracle and MySQL 
 SELECT * FROM tblEmp NATURAL JOIN tblDept
 
+A cursor is a temporary work area created in a system memory when an SQL statement is executed.
+
+A database contains Logical Storage Unit called tablespaces. A tablespace is a set of related logical structures. Actually a tablespace groups related logical structures together.
