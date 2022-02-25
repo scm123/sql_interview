@@ -29,6 +29,14 @@ BEGIN
 END; 
 ===============================================
 
+Create table Fd_master(Sr_no varchar2(10), 
+Branch_no varchar2(10), account_no varchar2(20),
+company_type varchar2(20), constraint pk primary key(Sr_no),  
+constraint fk foreign key (Branch_no) references Branch,
+constraint chk check(company_type in (‘1C’, ’2C’, ’3C’)));
+
+===============================================
+
 ## Array in PLSQL
 
 CREATE OR REPLACE TYPE integer_varray 
