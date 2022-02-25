@@ -27,6 +27,60 @@ BEGIN
    END LOOP; 
    CLOSE c_customers; 
 END; 
+===============================================
+
+## Array in PLSQL
+
+create table my_test ( id number,date_time date, person_id number);
+
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (1,to_date('10-SEP-13','DD-MON-RR'),112);
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (2,to_date('10-SEP-13','DD-MON-RR'),113);
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (3,to_date('10-SEP-13','DD-MON-RR'),114);
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (4,to_date('10-SEP-13','DD-MON-RR'),115);
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (5,to_date('10-SEP-13','DD-MON-RR'),116);
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (6,to_date('10-SEP-13','DD-MON-RR'),117);
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (7,to_date('10-SEP-13','DD-MON-RR'),118);
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (8,to_date('10-SEP-13','DD-MON-RR'),119);
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (9,to_date('10-SEP-13','DD-MON-RR'),120);
+Insert into my_test (ID,DATE_TIME,PERSON_ID) values (10,to_date('10-SEP-13','DD-MON-RR'),121);           
+
+CREATE OR REPLACE TYPE integer_varray AS VARRAY(100) OF INTEGER NOT NULL;
+
+SET SERVEROUTPUT ON
+DECLARE
+     varray_integer integer_varray := integer_varray();
+     l_limit number;
+BEGIN
+
+select count(*) into l_limit from my_test;
+     FOR i IN 1..l_limit LOOP
+          varray_integer.EXTEND;
+
+          SELECT person_id 
+          INTO varray_integer(i) 
+          FROM my_test WHERE ID = i;
+
+     END LOOP;
+
+
+     FOR i IN 1..l_limit loop
+     dbms_output.put_line(varray_integer(i));
+     END loop;
+END;
+
+
+anonymous block completed
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+=========================================
 
 Both the statements will remove the data from the "customers" table but the main difference is that you can roll back the DELETE statement whereas you can't roll back the TRUNCATE TABLE statement.
 
